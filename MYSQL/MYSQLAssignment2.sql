@@ -9,10 +9,10 @@ AS
 SELECT * FROM DEpt_Emp WHERE EMP_NO IN (10004,10005,10006,10007,10008);
 
 SELECT * FROM VW_Emp t1
-LEFT JOIN DEpt_Emp t2 ON t1.EMP_NO = t2.EMP_NO
+LEFT JOIN VW_DEpt_Emp t2 ON t1.EMP_NO = t2.EMP_NO
 UNION
 SELECT * FROM VW_Emp t1
-RIGHT JOIN DEpt_Emp t2 ON t1.EMP_NO = t2.EMP_NO
+RIGHT JOIN VW_DEpt_Emp t2 ON t1.EMP_NO = t2.EMP_NO
 
 #Answer 2
 select concat(first_name,' ',last_name) as name, case when gender='M' THEN 'Male'
