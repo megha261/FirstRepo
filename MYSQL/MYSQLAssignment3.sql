@@ -3,10 +3,11 @@ use employees
 #Write a query to display all the details from employee table with department, title and latest salary.
 
 with cte as(
-select emp_no,salary,to_date,row_number() over (partition by emp_no order by to_date desc ) rnk 
-from salaries
+select e.*,d.dept_no,d.dept_name,B.title,row_number() over (partition by A.emp_no order by A.to_date desc ) rnk 
+from salaries A join titles B  on A.Emp_no=B.Emp_no join dept_emp c on  A.emp_no=c.emp_no
+join departments D on c.dept_no=d.dept_no join employees e ON e.emp_no=a.emp_no
 )
-select  emp_no,salary,to_date from cte where rnk=1
+select  * from cte where rnk=1
 
 #Write a procedure which accepts the parameters (emp_no,birth_date, first_name, last_name, gender, hire_date)
 # and to update the table if emp_no already exists in the table or insert a new record if emp_no does not exists in table
